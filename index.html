@@ -1,0 +1,45 @@
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<style>
+canvas {
+    border: solid;
+    margin: auto;
+    display: block;
+}
+
+#questionField {
+    display: block;
+    margin: 1em auto;
+    font-size: 2em;
+    width: 800px;
+    height: 200px;
+    white-space: pre-line;
+}
+
+section {
+    text-align: center;
+}
+
+#answerField {
+    font-size: 2em;
+}
+
+button {
+    margin: 0 0 1em 1em;
+    height: 30px;
+    border-radius: 10px;
+}
+
+</style>
+<body>
+<aside>
+        <em>Heat capacity</em><br />
+        Water: $$4.186 {J \over g°C}$$<br />
+        Copper: $$0.387 {J \over g°C}$$
+</aside>
+<canvas width=800 height=600 id="canvas"></canvas>
+<div id="questionField"></div>
+<section>
+    <input id="answerField">
+    <button>Answer</button>
+</section>
+<script src="thermopractice.js"></script>
