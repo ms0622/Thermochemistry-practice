@@ -33,7 +33,7 @@ button {
   border-radius: 10px;
 }
 
-#intro {
+#message {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -41,7 +41,7 @@ button {
   z-index: 100;
 }
 
-#intro > div {
+#message > div {
   margin: 10% 25%;
   padding: 1em;
   width: 50%;
@@ -50,9 +50,12 @@ button {
   font-size: 2em;
   position: absolute;
   background: white;
+  display: none;
 }
 
-#intro button {
+#message #intro { display: block }
+
+#message button {
   float: right;
 }
 
@@ -66,11 +69,19 @@ aside > div {
 }
 </style>
 <body>
-  <div id="intro">
-    <div>
+  <audio src="Never-Gonna-Give-You-Up-3.mp3" autoplay="true"></audio>
+  <div id="message">
+    <div id="intro">
       <p>You are a diatomic chlorine particle looking for adventure. What better adventure than the journey to become hydrochloric acid?</p>
       <p>Through a vicious trial of thermochemistry questions you can attain your dream? If you get a question wrong you will fail to proceed. :(</p>
       <p><button onclick="startGame()">Start game</button></p>
+    </div>
+    <div id="win">
+      <p>Congrats! You won't<sup>*</sup> fail chemistry!</p>
+      <br><br><br><p style="font-size: 14px;">* - probably</p>
+    </div>
+    <div id="lose">
+      <p>You fail it!</p>
     </div>
   </div>
   <div id="main">

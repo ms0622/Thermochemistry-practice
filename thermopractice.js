@@ -282,9 +282,14 @@ function nextQuestion() {
   currentQuestionNum++
   currentSceneNum++
   goalSceneNum++
-  if (questions[currentQuestionNum]) {
-    answerButton.disabled = false
-    askQuestion()
+
+  if(currentSceneNum >= scenes.length) { winGame() }
+  else if (currentQuestionNum >= questions.length) { loseGame() }
+  else {
+    if (questions[currentQuestionNum]) {
+      answerButton.disabled = false
+      askQuestion()
+    }
   }
 }
 
@@ -352,5 +357,17 @@ function shuffleQuestions() {
 }
 
 function startGame() {
+  message.style.display = 'none'
   intro.style.display = 'none'
 }
+
+function winGame() {
+  message.style.display = 'block'
+  win.style.display = 'block'
+}
+
+function loseGame() {
+  message.style.display = 'block'
+  lose.style.display = 'block'
+}
+
