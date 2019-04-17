@@ -61,11 +61,19 @@ const questions = [
     q: `12.0 g of benzene decomposes into hydrogen gas and carbon. If the temperature of 128mL of the surrounding water decreases from 298K to 291K,
     what was the change in heat for the system? (Answer in J)`,
     a: '3750',
-    hint: ''
+    hint: 'q<sub>water</sub> = 128g * 4.186 \\({J \\over g&deg;C}\\) * -7&deg;C'
   }, {
     q: 'Calculate the &Delta;H<sub>rxn</sub> for the combustion of propanol(C<sub>3</sub>H<sub>8</sub>). (Answer in \\({kJ \\over mol}\\))',
     a: '-2054',
-    hint: ''
+    hint: `<pre>
+                                   H     H
+    H H H       O=O                |     |
+    | | |       O=O      O=C=O     O-H   O-H
+  H-C-C-C-H  +  O=O  ->  O=C=O  + 
+    | | |       O=O      O=C=O     O-H   O-H
+    H H H       O=O                |     |
+                                   H     H
+</pre>`
   }
 ]
 
@@ -384,4 +392,5 @@ function showHint() {
   hintButton.disabled = true
   hintButton.disabled = true
   questionField.innerHTML += '<p>' + questions[currentQuestionNum].hint + '</p>'
+  if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub])
 }
