@@ -87,6 +87,11 @@ aside > div {
   <div id="main">
     <aside>
       <div>
+        <em>Chemicals</em><br />
+        <span style="font-size: 1.5em;">&#x25CB;</span> - Hydrogen<br>
+        <span style="color: #007700; font-size: 1.5em;">&#x25CF;</span> - Chlorine
+      </div>
+      <div>
         <em>Specific heat capacity</em><br />
         Water: \(4.186 {J \over g&deg;C}\)<br />
         Copper: \(0.387 {J \over g&deg;C}\)<br />
@@ -136,11 +141,12 @@ aside > div {
         </table>
       </div>
     </aside>
-    <canvas width=800 height=500 id="canvas"></canvas>
+      <canvas width=800 height=500 id="canvas"></canvas>
     <div id="questionField"></div>
     <section>
       <div id="answerBlock"></div>
       <button onclick="checkAnswer()" id="answerButton">Answer</button>
+      <button onclick="showHint()" id="hintButton">Hint</button>
     </section>
   </div>
   <script src="thermopractice.js"></script>

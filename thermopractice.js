@@ -21,7 +21,8 @@ const questions = [
 
     When the penny is left in the water, what is the final temperature of both the water and the penny? (answer in &deg;C)
     `,
-    a: '26'
+    a: '26',
+    hint: 'mc(T<sub>f</sub> - T<sub>i</sub>)<sub>Cu</sub> = -mc(T<sub>f</sub> - T<sub>i</sub>)<sub>Water</sub>'
   }, {
     q: 'When water is frozen and becomes ice, it is a(n) ________ reaction.',
     a: 'exothermic',
@@ -31,7 +32,8 @@ const questions = [
       'thermodynamic',
       'exothermic',
       'questionable'
-    ]
+    ],
+    hint: 'Ice has lesss energy than water.'
   }, {
     q: 'Which will burn your hand more, water at 100&deg;C or steam at 100&deg;C?',
     a: 'Steam',
@@ -41,23 +43,29 @@ const questions = [
       'Liquid water',
       'Steam',
       "Plot twist: they don't"
-    ]
+    ],
+    hint: 'Plot twist: they will'
   }, {
     q: '10.00 Cal = ___ J',
-    a: '41860'
+    a: '41860',
+    hint: '1000cal = 1Cal'
   }, {
     q: '10.0 J = ___ cal',
-    a: '2.39'
+    a: '2.39',
+    hint: '4.186J = 1cal'
   }, {
     q: 'Calculate the &Delta;H in J when 0.444 mol of steam at 180&deg;C is cooled to ice at -5.0&deg;C',
-    a: '-22000'
+    a: '-22000',
+    hint: '<img src="cooling-curve.png">'
   }, {
     q: `12.0 g of benzene decomposes into hydrogen gas and carbon. If the temperature of 128mL of the surrounding water decreases from 298K to 291K,
     what was the change in heat for the system? (Answer in J)`,
-    a: '3750'
+    a: '3750',
+    hint: ''
   }, {
     q: 'Calculate the &Delta;H<sub>rxn</sub> for the combustion of propanol(C<sub>3</sub>H<sub>8</sub>). (Answer in \\({kJ \\over mol}\\))',
-    a: '-2054'
+    a: '-2054',
+    hint: ''
   }
 ]
 
@@ -268,13 +276,17 @@ function nextScene() {
 }
 
 function checkAnswer() {
-  answerButton.disabled = true
   const answerNode = document.querySelector('#answerField') || document.querySelector('input:checked')
+  if (answerNode == null || !answerNode.value.length) return
+
+  const correctAnswer = questions[currentQuestionNum].a
+  answerButton.disabled = true
+
   const answer = answerNode.value.trim()
-  if (answer == questions[currentQuestionNum].a) {
+  if (answer == correctAnswer) {
     nextState()
   } else {
-    redoState()
+    redoState(correctAnswer)
   }
 }
 
@@ -288,6 +300,7 @@ function nextQuestion() {
   else {
     if (questions[currentQuestionNum]) {
       answerButton.disabled = false
+      hintButton.disabled = false
       askQuestion()
     }
   }
@@ -334,12 +347,8 @@ function showMessage(text) {
   alert(text)
 }
 
-function redoState() {
-  if (document.querySelector('#answerField')) {
-    showMessage("That's not correct. Make sure to use the right number of sig-figs, or recheck your math")
-  } else {
-    showMessage("That's not correct; try another choice")
-  }
+function redoState(answer) {
+  showMessage(`Sorry, the correct answer was ${answer}`)
   answerButton.disabled = false
   currentSceneNum = 0
   goalSceneNum--
@@ -371,3 +380,8 @@ function loseGame() {
   lose.style.display = 'block'
 }
 
+function showHint() {
+  hintButton.disabled = true
+  hintButton.disabled = true
+  questionField.innerHTML += '<p>' + questions[currentQuestionNum].hint + '</p>'
+}
