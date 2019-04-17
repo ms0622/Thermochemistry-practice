@@ -42,6 +42,22 @@ const questions = [
       'Steam',
       "Plot twist: they don't"
     ]
+  }, {
+    q: '10.00 Cal = ___ J',
+    a: '41860'
+  }, {
+    q: '10.0 J = ___ cal',
+    a: '2.39'
+  }, {
+    q: 'Calculate the ΔH in J when 0.444 mol of steam at 180°C is cooled to ice at -5.0°C',
+    a: '-22000'
+  }, {
+    q: `12.0 g of benzene decomposes into hydrogen gas and carbon. If the temperature of 128mL of the surrounding water decreases from 298K to 291K,
+    what was the change in heat for the system? (Answer in J)`,
+    a: '3750'
+  }, {
+    q: 'Calculate the ΔH<sub>rxn</sub> for the combustion of propanol(C<sub>3</sub>H<sub>8</sub>). (Answer in \\({kJ \\over mol}\\))',
+    a: '-2054'
   }
 ]
 
@@ -68,6 +84,14 @@ function draw(animation) {
   pen.arc(x, y, radius, 0, cr)
   pen.fill()
   pen.stroke()
+
+  if (animation.drawBonds) {
+    pen.fillStyle = 'black'
+    for (let i = 0; i < 5; i++) {
+      pen.fillRect(x, 7 + y + radius + i * 10, 5, 5)
+      pen.fillRect(x + 2 * radius, 7 + y + radius + i * 10, 5, 5)
+    }
+  }
 
   pen.beginPath()
   pen.translate(x, y)
@@ -128,6 +152,43 @@ const animations = [{
   startX: 6, endX: 6,
   startY: 1, endY: 2,
   steps: 50
+},{
+  chem1: 'Cl', chem2: 'Cl',
+  startAngle: quarterCr, endAngle: quarterCr,
+  startX: 1, endX: 3,
+  startY: 2, endY: 2,
+  steps: 50
+},{
+  chem1: 'H', chem2: 'H',
+  startAngle: quarterCr, endAngle: quarterCr,
+  startX: 6, endX: 4,
+  startY: 2, endY: 2,
+  steps: 50
+},{
+  chem1: 'Cl', chem2: 'H',
+  startAngle: 0, endAngle: 0,
+  startX: 3, endX: 3,
+  startY: 2, endY: 1.7,
+  steps: 25,
+  drawBonds: true
+},{
+  chem1: 'Cl', chem2: 'H',
+  startAngle: 0, endAngle: 0,
+  startX: 3, endX: 3,
+  startY: 3, endY: 3.27,
+  steps: 25
+},{
+  chem1: 'Cl', chem2: 'H',
+  startAngle: 0, endAngle: 0,
+  startX: 3, endX: 3,
+  startY: 1.7, endY: 1,
+  steps: 100
+},{
+  chem1: 'Cl', chem2: 'H',
+  startAngle: 0, endAngle: 0,
+  startX: 3, endX: 3,
+  startY: 3.27, endY: 4,
+  steps: 100
 }]
 
 const scenes = [
@@ -144,10 +205,20 @@ const scenes = [
   ],[
     {animation: animations[6], startStep: 0},
     {animation: animations[7], startStep: 25}
+  ],[
+    {animation: animations[8], startStep: 0},
+    {animation: animations[9], startStep: 0}
+  ],[
+    {animation: animations[10], startStep: 0},
+    {animation: animations[11], startStep: 0}
+  ],[
+    {animation: animations[12], startStep: 0},
+    {animation: animations[13], startStep: 0}
   ]
 ]
 
 let currentSceneNum = 0
+let goalSceneNum = 0
 
 let step
 
@@ -184,7 +255,16 @@ function drawFrames() {
     }
   })
   if (step++ < finalStep) requestAnimationFrame(drawFrames)
-  else nextQuestion()
+  else nextScene()
+}
+
+function nextScene() {
+  if (currentSceneNum < goalSceneNum) {
+    currentSceneNum++
+    animate()
+  } else {
+    nextQuestion()
+  }
 }
 
 function checkAnswer() {
@@ -201,6 +281,7 @@ function checkAnswer() {
 function nextQuestion() {
   currentQuestionNum++
   currentSceneNum++
+  goalSceneNum++
   if (questions[currentQuestionNum]) {
     answerButton.disabled = false
     askQuestion()
@@ -210,7 +291,8 @@ function nextQuestion() {
 function askQuestion() {
   answerBlock.innerHTML = ''
   const question = questions[currentQuestionNum]
-  questionField.innerText = question.q
+  questionField.innerHTML = question.q
+  if (MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub])
   if (question.choices) {
     question.choices.forEach((q, index) => {
       const div = document.createElement('div')
@@ -256,6 +338,9 @@ function redoState() {
     showMessage("That's not correct; try another choice")
   }
   answerButton.disabled = false
+  currentSceneNum = 0
+  goalSceneNum--
+  animate()
 }
 
 animate()
