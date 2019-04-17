@@ -49,14 +49,14 @@ const questions = [
     q: '10.0 J = ___ cal',
     a: '2.39'
   }, {
-    q: 'Calculate the ΔH in J when 0.444 mol of steam at 180°C is cooled to ice at -5.0°C',
+    q: 'Calculate the &Delta;H in J when 0.444 mol of steam at 180°C is cooled to ice at -5.0°C',
     a: '-22000'
   }, {
     q: `12.0 g of benzene decomposes into hydrogen gas and carbon. If the temperature of 128mL of the surrounding water decreases from 298K to 291K,
     what was the change in heat for the system? (Answer in J)`,
     a: '3750'
   }, {
-    q: 'Calculate the ΔH<sub>rxn</sub> for the combustion of propanol(C<sub>3</sub>H<sub>8</sub>). (Answer in \\({kJ \\over mol}\\))',
+    q: 'Calculate the &Delta;H<sub>rxn</sub> for the combustion of propanol(C<sub>3</sub>H<sub>8</sub>). (Answer in \\({kJ \\over mol}\\))',
     a: '-2054'
   }
 ]
@@ -349,4 +349,8 @@ function shuffleQuestions() {
       const j = Math.floor(Math.random() * (i + 1));
       [questions[i], questions[j]] = [questions[j], questions[i]];
   }
+}
+
+function startGame() {
+  intro.style.display = 'none'
 }
