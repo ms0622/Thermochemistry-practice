@@ -17,9 +17,9 @@ const chemicals = {
 
 const questions = [
   {
-    q: `A heated copper penny with a mass of 3.0g at a temperature of 150°C is dropped into a cup of 25ml of water at 25°C.
+    q: `A heated copper penny with a mass of 3.0g at a temperature of 150°deg;C is dropped into a cup of 25ml of water at 25°deg;C.
 
-    When the penny is left in the water, what is the final temperature of both the water and the penny? (answer in °C)
+    When the penny is left in the water, what is the final temperature of both the water and the penny? (answer in °deg;C)
     `,
     a: '26'
   }, {
@@ -33,7 +33,7 @@ const questions = [
       'questionable'
     ]
   }, {
-    q: 'Which will burn your hand more, water at 100°C or steam at 100°C?',
+    q: 'Which will burn your hand more, water at 100°deg;C or steam at 100°deg;C?',
     a: 'Steam',
     choices: [
       'They both burn equally',
@@ -49,7 +49,7 @@ const questions = [
     q: '10.0 J = ___ cal',
     a: '2.39'
   }, {
-    q: 'Calculate the &Delta;H in J when 0.444 mol of steam at 180°C is cooled to ice at -5.0°C',
+    q: 'Calculate the &Delta;H in J when 0.444 mol of steam at 180°deg;C is cooled to ice at -5.0°deg;C',
     a: '-22000'
   }, {
     q: `12.0 g of benzene decomposes into hydrogen gas and carbon. If the temperature of 128mL of the surrounding water decreases from 298K to 291K,
