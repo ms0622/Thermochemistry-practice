@@ -19,7 +19,7 @@ section {
     text-align: center;
 }
 
-#answerField {
+input {
     font-size: 2em;
 }
 
@@ -29,17 +29,31 @@ button {
     border-radius: 10px;
 }
 
+.flex { display: flex; }
+#message {
+    width: 50%;
+    font-style: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+#answerBlock div {
+    text-align: left;
+}
 </style>
 <body>
-<aside>
-        <em>Heat capacity</em><br />
-        Water: $$4.186 {J \over g°C}$$<br />
-        Copper: $$0.387 {J \over g°C}$$
-</aside>
+    <div class="flex">
+        <aside>
+            <em>Heat capacity</em><br />
+            Water: \(4.186 {J \over g°C}\)<br />
+            Copper: \(0.387 {J \over g°C}\)
+        </aside>
+        <div id="message"></div>
+    </div>
 <canvas width=800 height=600 id="canvas"></canvas>
 <div id="questionField"></div>
 <section>
-    <input id="answerField">
-    <button>Answer</button>
+    <span id="answerBlock"></span>
+    <button onclick="checkAnswer()" id="answerButton">Answer</button>
 </section>
 <script src="thermopractice.js"></script>
