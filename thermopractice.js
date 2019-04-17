@@ -292,7 +292,7 @@ function askQuestion() {
   answerBlock.innerHTML = ''
   const question = questions[currentQuestionNum]
   questionField.innerHTML = question.q
-  if (MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+  if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub])
   if (question.choices) {
     question.choices.forEach((q, index) => {
       const div = document.createElement('div')
@@ -326,8 +326,6 @@ function nextState() {
 }
 
 function showMessage(text) {
-  // message.innerText = text
-  // setTimeout(() => message.innerText = '', 2000)
   alert(text)
 }
 
@@ -343,4 +341,12 @@ function redoState() {
   animate()
 }
 
+shuffleQuestions()
 animate()
+
+function shuffleQuestions() {
+  for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+  }
+}

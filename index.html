@@ -1,4 +1,4 @@
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 <style>
 canvas {
   border: solid;
@@ -32,31 +32,96 @@ button {
   border-radius: 10px;
 }
 
-#message {
+#intro {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #dddddd90;
+  display: none;
+}
+
+#intro > div {
   width: 50%;
   font-style: bold;
   font-size: 2em;
   text-align: center;
   position: absolute;
+  background: white;
 }
 
 #answerBlock div {
   text-align: left;
   margin-left: 40%;
 }
+
+aside > div {
+  margin-bottom: 30px;
+}
 </style>
 <body>
-  <div id="message"></div>
-  <aside>
-    <em>Heat capacity</em><br />
-    Water: \(4.186 {J \over g°C}\)<br />
-    Copper: \(0.387 {J \over g°C}\)<br />
-    Benzene: \(1.750 {J \over gK}\)
-  </aside>
-  <canvas width=800 height=500 id="canvas"></canvas>
-  <div id="questionField"></div>
-  <section>
-    <div id="answerBlock"></div>
-    <button onclick="checkAnswer()" id="answerButton">Answer</button>
-  </section>
+  <div id="intro">
+    <div>
+      <p>You are a diatomic chlorine particle looking for adventure. What better adventure than the journey to become hydrochloric acid?</p>
+      <p>Through a vicious trial of thermochemistry questions you can attain your dream? If you get a question wrong you will fail to proceed. :(</p>p>
+    </div>
+  </div>
+  <div id="main">
+    <aside>
+      <div>
+        <em>Specific heat capacity</em><br />
+        Water: \(4.186 {J \over g°C}\)<br />
+        Copper: \(0.387 {J \over g°C}\)<br />
+        Benzene: \(1.750 {J \over gK}\)<br />
+        Ice: \(2.093 {J \over g°C}\)<br />
+        Steam: \(2.009 {J \over g°C}\)
+      </div>
+      <div>
+        <em>Equations</em><br />
+        q<sub>system</sub> = -q<sub>surroundings</sub><br />
+        q = mcΔT
+      </div>
+      <div>
+        <em>H<sub>2</sub>O state changes</em><br />
+        ΔH<sub>fus</sub> = \(6.01 {kJ \over mol}\)<br />
+        ΔH<sub>solid</sub> = \(-6.01 {kJ \over mol}\)<br />
+        ΔH<sub>cond</sub> = \(-40.7 {kJ \over mol}\)<br />
+        ΔH<sub>vap</sub> = \(40.7 {kJ \over mol}\)
+      </div>
+      <div>
+        <em>Bond energies</em>
+        <table>
+          <tr>
+            <th>Bond</th>
+            <th>ΔH (\({kJ \over mol}\))</th>
+          </tr>
+          <tr>
+            <td>C-C</td>
+            <td>347</td>
+          </tr>
+          <tr>
+            <td>O=O</td>
+            <td>498</td>
+          </tr>
+          <tr>
+            <td>C=O</td>
+            <td>805</td>
+          </tr>
+          <tr>
+            <td>H-O</td>
+            <td>464</td>
+          </tr>
+          <tr>
+            <td>H-C</td>
+            <td>413</td>
+          </tr>
+        </table>
+      </div>
+    </aside>
+    <canvas width=800 height=500 id="canvas"></canvas>
+    <div id="questionField"></div>
+    <section>
+      <div id="answerBlock"></div>
+      <button onclick="checkAnswer()" id="answerButton">Answer</button>
+    </section>
+  </div>
   <script src="thermopractice.js"></script>
