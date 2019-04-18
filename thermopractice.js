@@ -74,6 +74,20 @@ const questions = [
     H H H       O=O                |     |
                                    H     H
 </pre>`
+  }, {
+    q: `Calculate the &Delta;H of 2C<sub>(s)</sub>+H<sub>2(g)</sub> -> C<sub>2</sub>H<sub>2(g)</sub> given the following step reactions:
+
+1) C<sub>(s)</sub> + O<sub>2(g)</sub> -> CO<sub>2(g)</sub> &Delta;H = -393.5kJ
+2) H<sub>2(g)</sub> + &frac12;O<sub>2(g)</sub> -> H<sub>2</sub>O<sub>(l)</sub> &Delta;H = -285.8kJ
+3) C<sub>2</sub>H<sub>2(g)</sub> + \\({5 \\over 2}\\) O<sub>2(g)</sub> -> 2CO<sub>2(g)</sub> + H<sub>2</sub>O<sub>(l)</sub> &Delta;H = -1299.8kJ
+    
+    Answer in kJ`,
+    a: '227.0',
+    hint: `
+1) 2*[C<sub>(s)</sub> + O<sub>2(g)</sub> -> CO<sub>2(g)</sub>] &Delta;H = 2*(-393.5kJ)
+2) Unchanged
+3) flip it [C<sub>2</sub>H<sub>2(g)</sub> + \\({5 \\over 2}\\) O<sub>2(g)</sub> -> 2CO<sub>2(g)</sub> + H<sub>2</sub>O<sub>(l)</sub>] &Delta;H = -(-1299.8kJ)
+`
   }
 ]
 
@@ -322,19 +336,19 @@ function askQuestion() {
   if (question.choices) {
     question.choices.forEach((q, index) => {
       const div = document.createElement('div')
-      answerBlock.append(div)
+      answerBlock.appendChild(div)
 
       const option = document.createElement('input')
       option.type = 'radio'
       option.name = 'option'
       option.value = q
       option.id = `choice${index}`
-      div.append(option)
+      div.appendChild(option)
 
       const label = document.createElement('label')
       label.for = option.id
       label.innerText = q
-      div.append(label)
+      div.appendChild(label)
     })
   } else {
     const input = document.createElement('input')
@@ -342,7 +356,7 @@ function askQuestion() {
     input.onkeydown = e => {
       if (e.keyCode == 13) checkAnswer()
     }
-    answerBlock.append(input)
+    answerBlock.appendChild(input)
   }
 }
 
@@ -391,6 +405,7 @@ function loseGame() {
 function showHint() {
   hintButton.disabled = true
   hintButton.disabled = true
-  questionField.innerHTML += '<p>' + questions[currentQuestionNum].hint + '</p>'
+  const question = questions[currentQuestionNum]
+  questionField.innerHTML = question.q + '<p>' + question.hint + '</p>'
   if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub])
 }
