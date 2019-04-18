@@ -332,7 +332,7 @@ function askQuestion() {
   answerBlock.innerHTML = ''
   const question = questions[currentQuestionNum]
   questionField.innerHTML = question.q
-  if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+  requeue()
   if (question.choices) {
     question.choices.forEach((q, index) => {
       const div = document.createElement('div')
@@ -407,5 +407,13 @@ function showHint() {
   hintButton.disabled = true
   const question = questions[currentQuestionNum]
   questionField.innerHTML = question.q + '<p>' + question.hint + '</p>'
-  if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+  requeue()
+}
+
+function requeue() {
+  if (window.MathJax) {
+    setTimeout(() => {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+    }, 100)
+  }
 }
