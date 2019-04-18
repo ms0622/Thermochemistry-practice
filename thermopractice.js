@@ -5,6 +5,7 @@ const quarterCr = Math.PI / 2
 const eighthCr = Math.PI / 4
 
 const scale = 50
+const stopGame = false
 
 const chemicals = {
   Cl: {
@@ -298,6 +299,8 @@ function nextScene() {
 }
 
 function checkAnswer() {
+  if (stopGame) return
+  
   const answerNode = document.querySelector('#answerField') || document.querySelector('input:checked')
   if (answerNode == null || !answerNode.value.length) return
 
@@ -395,6 +398,7 @@ function startGame() {
 function winGame() {
   message.style.display = 'block'
   win.style.display = 'block'
+  stopGame = true
 }
 
 function loseGame() {
