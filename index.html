@@ -6,7 +6,7 @@
     <div id="intro">
       <p>You are a diatomic chlorine particle looking for adventure. What better adventure than the journey to become hydrochloric acid?</p>
       <p>Through a vicious trial of thermochemistry questions you can attain your dream? If you get a question wrong you will fail to proceed. :(</p>
-      <p><button onclick="startGame()">Start game</button></p>
+      <p><button id="startGameButton">Start game</button></p>
     </div>
     <div id="win">
       <p>Congrats! You won't<sup>*</sup> fail chemistry! <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click here</a> for your reward!</p>
@@ -77,8 +77,8 @@
     <div id="questionField"></div>
     <section>
       <div id="answerBlock"></div>
-      <button onclick="checkAnswer()" id="answerButton">Answer</button>
-      <button onclick="showHint()" id="hintButton">Hint</button>
+      <button id="answerButton">Answer</button>
+      <button id="hintButton">Hint</button>
     </section>
   </div>
-  <script src="thermopractice.js"></script>
+  <script type="module" src="thermopractice.js"></script>
