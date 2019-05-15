@@ -67,9 +67,9 @@ export default [
       Answer in kJ`,
       a: '227.0',
       hint: `
-  1) 2*[C<sub>(s)</sub> + O<sub>2(g)</sub> -> CO<sub>2(g)</sub>] &Delta;H = 2*(-393.5kJ)
-  2) Unchanged
-  3) flip it [C<sub>2</sub>H<sub>2(g)</sub> + \\({5 \\over 2}\\) O<sub>2(g)</sub> -> 2CO<sub>2(g)</sub> + H<sub>2</sub>O<sub>(l)</sub>] &Delta;H = -(-1299.8kJ)
+  1) Multiply the equation by 2.
+  2) The equation remains unchanged
+  3) Flip the products and reactants of the equation.
   `
     }
   ]
