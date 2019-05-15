@@ -27,7 +27,7 @@ export default [
         'Steam',
         "Plot twist: they don't"
       ],
-      hint: 'Plot twist: they will'
+      hint: 'Plot twist: they will and steam has more energy than water.'
     }, {
       q: '10.00 Cal = ___ J',
       a: '41860',
